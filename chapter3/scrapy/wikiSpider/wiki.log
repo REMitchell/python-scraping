@@ -1,0 +1,18 @@
+2015-03-09 00:11:36-0400 [scrapy] INFO: Scrapy 0.24.4 started (bot: wikiSpider)
+2015-03-09 00:11:36-0400 [scrapy] INFO: Optional features available: ssl, http11
+2015-03-09 00:11:36-0400 [scrapy] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'wikiSpider.spiders', 'SPIDER_MODULES': ['wikiSpider.spiders'], 'LOG_FILE': 'wiki.log', 'BOT_NAME': 'wikiSpider'}
+2015-03-09 00:11:36-0400 [scrapy] INFO: Enabled extensions: LogStats, TelnetConsole, CloseSpider, WebService, CoreStats, SpiderState
+2015-03-09 00:11:37-0400 [scrapy] INFO: Enabled downloader middlewares: HttpAuthMiddleware, DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, MetaRefreshMiddleware, HttpCompressionMiddleware, RedirectMiddleware, CookiesMiddleware, ChunkedTransferMiddleware, DownloaderStats
+2015-03-09 00:11:37-0400 [scrapy] INFO: Enabled spider middlewares: HttpErrorMiddleware, OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
+2015-03-09 00:11:37-0400 [scrapy] INFO: Enabled item pipelines: 
+2015-03-09 00:11:37-0400 [article] INFO: Spider opened
+2015-03-09 00:11:37-0400 [article] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2015-03-09 00:11:37-0400 [scrapy] DEBUG: Telnet console listening on 127.0.0.1:6023
+2015-03-09 00:11:37-0400 [scrapy] DEBUG: Web service listening on 127.0.0.1:6080
+2015-03-09 00:11:37-0400 [article] DEBUG: Crawled (200) <GET http://en.wikipedia.org/wiki/Python_%28programming_language%29> (referer: None)
+2015-03-09 00:11:37-0400 [scrapy] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2015-03-09 00:11:37-0400 [article] INFO: Closing spider (shutdown)
+2015-03-09 00:11:37-0400 [article] DEBUG: Filtered offsite request to 'en.wikibooks.org': <GET http://en.wikibooks.org/wiki/Python_Programming>
+2015-03-09 00:11:37-0400 [article] DEBUG: Filtered offsite request to 'code.google.com': <GET https://code.google.com/p/unladen-swallow/wiki/ProjectPlan>
+2015-03-09 00:11:37-0400 [article] DEBUG: Filtered offsite request to 'en.wikiquote.org': <GET http://en.wikiquote.org/wiki/Python>
+2015-03-09 00:11:37-0400 [scrapy] INFO: Received SIGINT twice, forcing unclean shutdown

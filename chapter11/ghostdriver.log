@@ -1,0 +1,23 @@
+PhantomJS is launching GhostDriver...
+[INFO  - 2015-06-15T00:08:45.592Z] GhostDriver - Main - running on port 51799
+[INFO  - 2015-06-15T00:08:46.231Z] Session [b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-06-15T00:08:46.231Z] Session [b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9] - page.customHeaders:  - {}
+[INFO  - 2015-06-15T00:08:46.231Z] Session [b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-10.9 (Mavericks)-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-06-15T00:08:46.231Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9
+[ERROR - 2015-06-15T00:08:47.864Z] Session [b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9] - page.onError - msg: ReferenceError: Can't find variable: ue
+[ERROR - 2015-06-15T00:08:47.864Z] Session [b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9] - page.onError - stack:
+  (anonymous function) (http://www.amazon.com/War-Peace-Leo-Nikolayevich-Tolstoy/dp/1427030200:10202)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:940)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:807)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:696)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:784)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:959)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:161)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:70)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:960)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:2615)
+  (anonymous function) (http://z-ecx.images-amazon.com/images/G/01/browser-scripts/site-wide-js-1.6.4-beacon/site-wide-10223378515._V1_.js:2640)
+  (anonymous function) (http://www.amazon.com/War-Peace-Leo-Nikolayevich-Tolstoy/dp/1427030200:10203)
+[ERROR - 2015-06-15T00:08:47.865Z] Session [b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9] - page.onError - msg: TypeError: 'null' is not an object (evaluating 'old_error_handler.apply')
+[ERROR - 2015-06-15T00:08:47.865Z] Session [b0ccb720-12f2-11e5-b3d6-0ba38f30e2f9] - page.onError - stack:
+  dpOnErrorOverride (http://www.amazon.com/War-Peace-Leo-Nikolayevich-Tolstoy/dp/1427030200:1186)
