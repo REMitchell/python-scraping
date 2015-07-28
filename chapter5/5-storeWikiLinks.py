@@ -4,8 +4,7 @@ import datetime
 import random
 import pymysql
 
-conn = pymysql.connect(host='127.0.0.1', unix_socket='/tmp/mysql.sock',
-                       user='root', passwd=None, db='mysql', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1', unix_socket='/tmp/mysql.sock', user='root', passwd=None, db='mysql', charset='utf8')
 cur = conn.cursor()
 cur.execute("USE scraping")
 
@@ -18,11 +17,10 @@ def store(title, content):
 def getLinks(articleUrl):
     html = urlopen("http://en.wikipedia.org"+articleUrl)
     bsObj = BeautifulSoup(html)
-    title = bsObj.find("h1").find("span").get_text()
+    title = bsObj.find("h1").get_text()
     content = bsObj.find("div", {"id":"mw-content-text"}).find("p").get_text()
     store(title, content)
-    return bsObj.find("div", {"id":"bodyContent"}).findAll("a", 
-                      href=re.compile("^(/wiki/)((?!:).)*$"))
+    return bsObj.find("div", {"id":"bodyContent"}).findAll("a", href=re.compile("^(/wiki/)((?!:).)*$"))
 
 links = getLinks("/wiki/Kevin_Bacon")
 try:
