@@ -30,7 +30,7 @@ def cleanInput(input):
             cleanInput.append(item)
     return cleanInput
 
-def ngrams(input, n):
+def getNgrams(input, n):
     input = cleanInput(input)
     output = {}
     for i in range(len(input)-n+1):
@@ -49,7 +49,7 @@ def getFirstSentenceContaining(ngram, content):
     return ""
 
 content = str(urlopen("http://pythonscraping.com/files/space.txt").read(), 'utf-8')
-ngrams = ngrams(content, 2)
+ngrams = getNgrams(content, 2)
 sortedNGrams = sorted(ngrams.items(), key = operator.itemgetter(1), reverse = True)
 print(sortedNGrams)
 
