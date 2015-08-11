@@ -44,7 +44,7 @@ def getRandomExternalLink(startingPage):
         return externalLinks[random.randint(0, len(externalLinks)-1)]
     
 def followExternalOnly(startingSite):
-    externalLink = getRandomExternalLink("http://oreilly.com")
+    externalLink = getRandomExternalLink(startingSite)
     print("Random external link is: "+externalLink)
     followExternalOnly(externalLink)
 
