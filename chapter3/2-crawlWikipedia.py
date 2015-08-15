@@ -4,7 +4,7 @@ import re
 
 pages = set()
 def getLinks(pageUrl):
-   global pages
+    global pages
     html = urlopen("http://en.wikipedia.org"+pageUrl)
     bsObj = BeautifulSoup(html)
     try:
