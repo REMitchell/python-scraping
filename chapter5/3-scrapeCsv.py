@@ -15,6 +15,6 @@ try:
 		csvRow = []
 		for cell in row.findAll(['td', 'th']):
 			csvRow.append(cell.get_text())
-			writer.writerow(csvRow)
+		writer.writerow(csvRow)
 finally:
     csvFile.close()
