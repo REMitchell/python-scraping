@@ -39,5 +39,5 @@ for download in downloadList:
     fileUrl = getAbsoluteURL(baseUrl, download["src"])
     if fileUrl is not None:
         print(fileUrl)
-
-urlretrieve(fileUrl, getDownloadPath(baseUrl, fileUrl, downloadDirectory))
+        fileUrl = fileUrl.split('?')[0]
+        urlretrieve(fileUrl, getDownloadPath(baseUrl, fileUrl, downloadDirectory))
