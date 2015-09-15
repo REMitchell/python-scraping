@@ -1,11 +1,11 @@
 from urllib.request import urlopen
+from urllib.error import HTTPError
 from bs4 import BeautifulSoup
 import re
-import datetime
 import random
 
 pages = set()
-random.seed(datetime.datetime.now())
+
 
 #Retrieves a list of all Internal links found on a page
 def getInternalLinks(bsObj, includeUrl):
@@ -19,34 +19,40 @@ def getInternalLinks(bsObj, includeUrl):
             
 #Retrieves a list of all external links found on a page
 def getExternalLinks(bsObj, excludeUrl):
+    excludeUrl = splitAddress(excludeUrl)[0]
     externalLinks = []
     #Finds all links that start with "http" or "www" that do
     #not contain the current URL
     for link in bsObj.findAll("a", href=re.compile("^(http|www)((?!"+excludeUrl+").)*$")):
-        if link.attrs['href'] is not None:
+        if link.attrs['href'] is not None and len(link.attrs['href']) != 0:
             if link.attrs['href'] not in externalLinks:
                 externalLinks.append(link.attrs['href'])
     return externalLinks
 
 def splitAddress(address):
+    address = address.replace("www", "")
     addressParts = address.replace("http://", "").split("/")
     return addressParts
 
-def getRandomExternalLink(startingPage):
-    html = urlopen(startingPage)
-    bsObj = BeautifulSoup(html)
-    externalLinks = getExternalLinks(bsObj, splitAddress(startingPage)[0])
+
+def followExternalOnly(bsObj, url):
+    externalLinks = getExternalLinks(bsObj, splitAddress(url)[0])
     if len(externalLinks) == 0:
-        internalLinks = getInternalLinks(startingPage)
-        return getNextExternalLink(internalLinks[random.randint(0, 
-                                  len(internalLinks)-1)])
+        #Only internal links here. Get another internal page and try again
+        internalLinks = getInternalLinks(bsObj, url)
+        bsObj = urlopen(internalLinks[random.randint(0, len(internalLinks)-1)])
+        return followExternalOnly(bsObj, url)
     else:
-        return externalLinks[random.randint(0, len(externalLinks)-1)]
+        randomExternal = externalLinks[random.randint(0, len(externalLinks)-1)]
+        try:
+            nextBsObj = BeautifulSoup(urlopen(randomExternal))
+            print(randomExternal)
+            return [nextBsObj, url]
+        except HTTPError:
+            #Try again
+            print("Encountered error at "+randomExternal+"! Trying again")
+            return followExternalOnly(bsObj, url)
     
-def followExternalOnly(startingSite):
-    externalLink = getRandomExternalLink(startingSite)
-    print("Random external link is: "+externalLink)
-    followExternalOnly(externalLink)
 
 
 #Collects a list of all external URLs found on the site
@@ -66,5 +72,14 @@ def getAllExternalLinks(siteUrl):
             print("About to get link: "+link)
             allIntLinks.add(link)
             getAllExternalLinks(link)
-            
+
+url = "http://oreilly.com"
+bsObj = BeautifulSoup(urlopen(url))
+#Following random external links for 10 steps
+for i in range(10):
+    bsObj, url = followExternalOnly(bsObj, url)
+
+#Get a collection of all external links on orielly.com
 getAllExternalLinks("http://oreilly.com")
+
+
