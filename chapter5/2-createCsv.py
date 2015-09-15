@@ -1,7 +1,7 @@
 import csv
 #from os import open
 
-csvFile = open("../files/test.csv", 'w+')
+csvFile = open("../files/test.csv", 'w+', newline='')
 try:
     writer = csv.writer(csvFile)
     writer.writerow(('number', 'number plus 2', 'number times 2'))
