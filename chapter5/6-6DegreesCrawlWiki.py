@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
 import re
 import pymysql
+from urllib.request import urlopen
 
-conn = pymysql.connect(host='127.0.0.1', unix_socket='/tmp/mysql.sock', user='root', passwd=None, db='mysql', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root', db='mysql', charset='utf8')
 cur = conn.cursor()
 cur.execute("USE wikipedia")
 
@@ -29,12 +30,12 @@ def getLinks(pageUrl, recursionLevel):
     pageId = insertPageIfNotExists(pageUrl)
     html = urlopen("http://en.wikipedia.org"+pageUrl)
     bsObj = BeautifulSoup(html)
-    for link in bsObj.findAll("a", 
-                              href=re.compile("^(/wiki/)((?!:).)*$")):
-                              insertLink(pageId, insertPageIfNotExists(link.attrs['href']))
+    for link in bsObj.findAll("a", href=re.compile("^(/wiki/)((?!:).)*$")):
+        insertLink(pageId, insertPageIfNotExists(link.attrs['href']))
         if link.attrs['href'] not in pages:
             #We have encountered a new page, add it and search it for links
             newPage = link.attrs['href']
+            print(newPage)
             pages.add(newPage)
             getLinks(newPage, recursionLevel+1)
 getLinks("/wiki/Kevin_Bacon", 0) 
