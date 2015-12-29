@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
 
 
-driver = webdriver.PhantomJS(executable_path='<Path to Phantom JS>')
+driver = webdriver.PhantomJS(executable_path='phantomjs/bin/phantomjs')
 driver.get("http://pythonscraping.com/pages/files/form.html")
 
 firstnameField = driver.find_element_by_name("firstname")
@@ -18,9 +18,7 @@ submitButton.click()
 ################
 
 ### METHOD 2 ###
-actions = ActionChains(driver).click(firstnameField).send_keys("Ryan")
-                              .click(lastnameField).send_keys("Mitchell")
-                              .send_keys(Keys.RETURN)
+actions = ActionChains(driver).click(firstnameField).send_keys("Ryan").click(lastnameField).send_keys("Mitchell").send_keys(Keys.RETURN)
 actions.perform()
 ################
 
