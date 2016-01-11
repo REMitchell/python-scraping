@@ -3,8 +3,8 @@ from urllib.request import urlretrieve
 import subprocess
 from selenium import webdriver
 
-driver = webdriver.PhantomJS(executable_path='/Users/ryan/Documents/pythonscraping/code/headless/phantomjs-1.9.8-macosx/bin/phantomjs')
-#driver = webdriver.Firefox()
+#driver = webdriver.PhantomJS(executable_path='/Users/ryan/Documents/pythonscraping/code/headless/phantomjs-1.9.8-macosx/bin/phantomjs')
+driver = webdriver.Firefox()
 driver.get("http://www.amazon.com/War-Peace-Leo-Nikolayevich-Tolstoy/dp/1427030200")
 time.sleep(2)
 

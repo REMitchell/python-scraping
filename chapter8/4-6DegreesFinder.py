@@ -2,55 +2,47 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pymysql
 
-conn = pymysql.connect(host='127.0.0.1', unix_socket='/tmp/mysql.sock', 
-                       user='root', passwd=None, db='mysql', charset='utf8')
+
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root', db='mysql', charset='utf8')
 cur = conn.cursor()
 cur.execute("USE wikipedia")
 
-class SolutionFound(RuntimeError):
-   def __init__(self, message):
-      self.message = message
-
-def getLinks(fromPageId):
-    cur.execute("SELECT toPageId FROM links WHERE fromPageId = %s", (fromPageId))
+def getUrl(pageId):
+    cur.execute("SELECT url FROM pages WHERE id = %s", (int(pageId)))
     if cur.rowcount == 0:
         return None
+    return cur.fetchone()[0]
+
+def getLinks(fromPageId):
+    cur.execute("SELECT toPageId FROM links WHERE fromPageId = %s", (int(fromPageId)))
+    if cur.rowcount == 0:
+        return None
+    return [x[0] for x in cur.fetchall()]
+
+def searchBreadth(targetPageId, currentPageId, depth, nodes):
+    if nodes is None or len(nodes) == 0:
+        return None
+    if depth <= 0:
+        for node in nodes:
+            if node == targetPageId:
+                return [node]
+        return None
+    #depth is greater than 0 -- go deeper!
+    for node in nodes:
+        found = searchBreadth(targetPageId, node, depth-1, getLinks(node))
+        if found is not None:
+            return found.append(currentPageId)
+    return None
+
+nodes = getLinks(1)
+targetPageId = 123428
+for i in range(0,4):
+    found = searchBreadth(targetPageId, 1, i, nodes)
+    if found is not None:
+        print(found)
+        for node in found:
+            print(getUrl(node))
+        break;
     else:
-        return [x[0] for x in cur.fetchall()]
+        print("No path found")
 
-def constructDict(currentPageId):
-    links = getLinks(currentPageId)
-    if links:
-        return dict(zip(links, [{}]*len(links)))
-    return {}
-
-
-#The link tree may either be empty or contain multiple links
-def searchDepth(targetPageId, currentPageId, linkTree, depth):
-    if depth == 0:
-        #Stop recursing and return, regardless
-        return linkTree
-    if not linkTree:
-        linkTree = constructDict(currentPageId)
-        if not linkTree:
-            #No links found. Cannot continue at this node
-            return {}
-    if targetPageId in linkTree.keys():
-        print("TARGET "+str(targetPageId)+" FOUND!")
-        raise SolutionFound("PAGE: "+str(currentPageId))
-
-    for branchKey, branchValue in linkTree.items():
-        try:
-            #Recurse here to continue building the tree
-            linkTree[branchKey] = searchDepth(targetPageId, branchKey,
-                                              branchValue, depth-1)
-        except SolutionFound as e:
-            print(e.message)
-            raise SolutionFound("PAGE: "+str(currentPageId))
-    return linkTree
-
-try:
-    searchDepth(134951, 1, {}, 4)
-    print("No solution found")
-except SolutionFound as e:
-    print(e.message)
