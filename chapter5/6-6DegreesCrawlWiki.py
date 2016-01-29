@@ -36,7 +36,7 @@ def insertLink(fromPageId, toPageId):
 def getLinks(pageUrl, recursionLevel):
     global pages
     if recursionLevel > 4:
-        return;
+        return
     pageId = insertPageIfNotExists(pageUrl)
     html = urlopen("http://en.wikipedia.org"+pageUrl)
     bsObj = BeautifulSoup(html)

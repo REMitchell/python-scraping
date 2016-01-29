@@ -17,14 +17,14 @@ def retrieveRandomWord(wordList):
 
 def buildWordDict(text):
     #Remove newlines and quotes
-    text = text.replace("\n", " ");
-    text = text.replace("\"", "");
+    text = text.replace("\n", " ")
+    text = text.replace("\"", "")
 
     #Make sure puncuation are treated as their own "word," so they will be included
     #in the Markov chain
     punctuation = [',','.',';',':']
     for symbol in punctuation:
-        text = text.replace(symbol, " "+symbol+" ");
+        text = text.replace(symbol, " "+symbol+" ")
 
     words = text.split(" ")
     #Filter out empty words

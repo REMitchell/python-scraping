@@ -42,7 +42,7 @@ for i in range(0,4):
         print(found)
         for node in found:
             print(getUrl(node))
-        break;
+        break
     else:
         print("No path found")
 
