@@ -1,4 +1,5 @@
 from urllib.request import urlopen
+from urllib.request import HTTPError
 from bs4 import BeautifulSoup
 import datetime
 import json
@@ -9,8 +10,7 @@ random.seed(datetime.datetime.now())
 def getLinks(articleUrl):
     html = urlopen("http://en.wikipedia.org"+articleUrl)
     bsObj = BeautifulSoup(html)
-    return bsObj.find("div", {"id":"bodyContent"}).findAll("a", 
-                     href=re.compile("^(/wiki/)((?!:).)*$"))
+    return bsObj.find("div", {"id":"bodyContent"}).findAll("a", href=re.compile("^(/wiki/)((?!:).)*$"))
 
 def getHistoryIPs(pageUrl):
     #Format of revision history pages is: 
@@ -31,8 +31,7 @@ def getHistoryIPs(pageUrl):
 
 def getCountry(ipAddress):
     try:
-        response = urlopen("http://freegeoip.net/json/"
-                           +ipAddress).read().decode('utf-8')
+        response = urlopen("http://freegeoip.net/json/"+ipAddress).read().decode('utf-8')
     except HTTPError:
         return None
     responseJson = json.loads(response)
