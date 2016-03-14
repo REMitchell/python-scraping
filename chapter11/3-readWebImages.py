@@ -8,7 +8,7 @@ driver = webdriver.Firefox()
 driver.get("http://www.amazon.com/War-Peace-Leo-Nikolayevich-Tolstoy/dp/1427030200")
 time.sleep(2)
 
-driver.find_element_by_id("sitbLogoImg").click()
+driver.find_element_by_id("img-canvas").click()
 #The easiest way to get exactly one of every page
 imageList = set()
 
