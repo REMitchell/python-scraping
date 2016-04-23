@@ -1,0 +1,6 @@
+AIzaSyD9Dns12MuQ0ZtLFh-fvjdlpRSavXw6lRM
+
+Usage:
+curl -d  @google-maps-geoapi-example.json  -H "Content-Type: application/json" -i "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD9Dns12MuQ0ZtLFh-fvjdlpRSavXw6lRM"
+
+Warning: Replace key=[Your Key Above]
