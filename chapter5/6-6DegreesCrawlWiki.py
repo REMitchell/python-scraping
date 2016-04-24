@@ -3,7 +3,7 @@ import re
 import pymysql
 from urllib.request import urlopen
 
-conn = pymysql.connect(host='127.0.0.1',  user='sennhvi', passwd='wangsh92', db='wikipedia', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1',  user='root', passwd=None, db='wikipedia', charset='utf8')
 cur = conn.cursor()
 ### cur.execute("USE wikipedia")
 
