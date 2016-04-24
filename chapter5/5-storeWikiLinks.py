@@ -5,9 +5,9 @@ import datetime
 import random
 import pymysql
 
-conn = pymysql.connect(host='127.0.0.1', unix_socket='/tmp/mysql.sock', user='root', passwd=None, db='mysql', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1', unix_socket='/run/mysqld/mysqld.sock', user='root', passwd=None, db='scraping', charset='utf8')
 cur = conn.cursor()
-cur.execute("USE scraping")
+### cur.execute("USE scraping")
 
 random.seed(datetime.datetime.now())
 
@@ -17,7 +17,7 @@ def store(title, content):
 
 def getLinks(articleUrl):
     html = urlopen("http://en.wikipedia.org"+articleUrl)
-    bsObj = BeautifulSoup(html)
+    bsObj = BeautifulSoup(html, "html.parser")
     title = bsObj.find("h1").get_text()
     content = bsObj.find("div", {"id":"mw-content-text"}).find("p").get_text()
     store(title, content)

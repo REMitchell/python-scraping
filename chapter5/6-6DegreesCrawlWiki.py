@@ -3,16 +3,16 @@ import re
 import pymysql
 from urllib.request import urlopen
 
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root', db='mysql', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1',  user='sennhvi', passwd='wangsh92', db='wikipedia', charset='utf8')
 cur = conn.cursor()
-cur.execute("USE wikipedia")
+### cur.execute("USE wikipedia")
 
 def pageScraped(url):
     cur.execute("SELECT * FROM pages WHERE url = %s", (url))
     if cur.rowcount == 0:
         return False
     page = cur.fetchone()
-    
+
     cur.execute("SELECT * FROM links WHERE fromPageId = %s", (int(page[0])))
     if cur.rowcount == 0:
         return False
@@ -39,7 +39,7 @@ def getLinks(pageUrl, recursionLevel):
         return
     pageId = insertPageIfNotExists(pageUrl)
     html = urlopen("http://en.wikipedia.org"+pageUrl)
-    bsObj = BeautifulSoup(html)
+    bsObj = BeautifulSoup(html, "html.parser")
     for link in bsObj.findAll("a", href=re.compile("^(/wiki/)((?!:).)*$")):
         insertLink(pageId, insertPageIfNotExists(link.attrs['href']))
         if not pageScraped(link.attrs['href']):
@@ -47,8 +47,8 @@ def getLinks(pageUrl, recursionLevel):
             newPage = link.attrs['href']
             print(newPage)
             getLinks(newPage, recursionLevel+1)
-        else: 
+        else:
             print("Skipping: "+str(link.attrs['href'])+" found on "+pageUrl)
-getLinks("/wiki/Kevin_Bacon", 0) 
+getLinks("/wiki/Kevin_Bacon", 0)
 cur.close()
 conn.close()

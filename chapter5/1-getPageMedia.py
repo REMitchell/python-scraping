@@ -12,7 +12,7 @@ def getAbsoluteURL(baseUrl, source):
     elif source.startswith("http://"):
         url = source
     elif source.startswith("www."):
-        url = source[4:]
+        source = source[4:]
         url = "http://"+source
     else:
         url = baseUrl+"/"+source
@@ -32,7 +32,7 @@ def getDownloadPath(baseUrl, absoluteUrl, downloadDirectory):
     return path
 
 html = urlopen("http://www.pythonscraping.com")
-bsObj = BeautifulSoup(html)
+bsObj = BeautifulSoup(html, "html.parser")
 downloadList = bsObj.findAll(src=True)
 
 for download in downloadList:
