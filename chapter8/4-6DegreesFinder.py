@@ -8,13 +8,13 @@ cur = conn.cursor()
 cur.execute("USE wikipedia")
 
 def getUrl(pageId):
-    cur.execute("SELECT url FROM pages WHERE id = %s", (int(pageId)))
+    cur.execute("SELECT url FROM pages WHERE id = %s", (int(pageId),))
     if cur.rowcount == 0:
         return None
     return cur.fetchone()[0]
 
 def getLinks(fromPageId):
-    cur.execute("SELECT toPageId FROM links WHERE fromPageId = %s", (int(fromPageId)))
+    cur.execute("SELECT toPageId FROM links WHERE fromPageId = %s", (int(fromPageId),))
     if cur.rowcount == 0:
         return None
     return [x[0] for x in cur.fetchall()]
