@@ -36,7 +36,7 @@ def getExternalLinks(bsObj, excludeUrl):
 
 def getRandomExternalLink(startingPage):
     html = urlopen(startingPage)
-    bsObj = BeautifulSoup(html)
+    bsObj = BeautifulSoup(html, "html.parser")
     externalLinks = getExternalLinks(bsObj, urlparse(startingPage).netloc)
     if len(externalLinks) == 0:
         print("No external links, looking around the site for one")

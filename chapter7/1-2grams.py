@@ -9,7 +9,7 @@ def getNgrams(input, n):
   return output
 
 html = urlopen("http://en.wikipedia.org/wiki/Python_(programming_language)")
-bsObj = BeautifulSoup(html)
+bsObj = BeautifulSoup(html, "html.parser")
 content = bsObj.find("div", {"id":"mw-content-text"}).get_text()
 ngrams = getNgrams(content, 2)
 print(ngrams)

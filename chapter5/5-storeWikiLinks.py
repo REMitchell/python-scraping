@@ -17,7 +17,7 @@ def store(title, content):
 
 def getLinks(articleUrl):
     html = urlopen("http://en.wikipedia.org"+articleUrl)
-    bsObj = BeautifulSoup(html)
+    bsObj = BeautifulSoup(html, "html.parser")
     title = bsObj.find("h1").get_text()
     content = bsObj.find("div", {"id":"mw-content-text"}).find("p").get_text()
     store(title, content)

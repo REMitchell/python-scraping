@@ -6,7 +6,7 @@ pages = set()
 def getLinks(pageUrl):
     global pages
     html = urlopen("http://en.wikipedia.org"+pageUrl)
-    bsObj = BeautifulSoup(html)
+    bsObj = BeautifulSoup(html, "html.parser")
     try:
         print(bsObj.h1.get_text())
         print(bsObj.find(id ="mw-content-text").findAll("p")[0])
