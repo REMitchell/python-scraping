@@ -32,7 +32,7 @@ def getDownloadPath(baseUrl, absoluteUrl, downloadDirectory):
     return path
 
 html = urlopen("http://www.pythonscraping.com")
-bsObj = BeautifulSoup(html)
+bsObj = BeautifulSoup(html, "html.parser")
 downloadList = bsObj.findAll(src=True)
 
 for download in downloadList:

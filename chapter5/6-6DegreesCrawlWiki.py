@@ -39,7 +39,7 @@ def getLinks(pageUrl, recursionLevel):
         return
     pageId = insertPageIfNotExists(pageUrl)
     html = urlopen("http://en.wikipedia.org"+pageUrl)
-    bsObj = BeautifulSoup(html)
+    bsObj = BeautifulSoup(html, "html.parser")
     for link in bsObj.findAll("a", href=re.compile("^(/wiki/)((?!:).)*$")):
         insertLink(pageId, insertPageIfNotExists(link.attrs['href']))
         if not pageScraped(link.attrs['href']):
