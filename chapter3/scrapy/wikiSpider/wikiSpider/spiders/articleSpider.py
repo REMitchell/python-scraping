@@ -1,7 +1,7 @@
-from scrapy.contrib.spiders import CrawlSpider, Rule
+from scrapy.spiders import CrawlSpider, Rule
 from wikiSpider.items import Article
-from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-from scrapy import log
+from scrapy.linkextractors import LinkExtractor
+import logging
 
 class ArticleSpider(CrawlSpider):
 	#log.start(logfile='log.txt', loglevel=log.CRITICAL)
@@ -9,7 +9,7 @@ class ArticleSpider(CrawlSpider):
 	allowed_domains = ["en.wikipedia.org"]
 	start_urls = ["http://en.wikipedia.org/wiki/Python_%28programming_language%29"]
 	rules = [
-		Rule(SgmlLinkExtractor(allow=('(/wiki/)((?!:).)*$'),), callback="parse_item", follow=True)
+		Rule(LinkExtractor(allow=('(/wiki/)((?!:).)*$'),), callback="parse_item", follow=True)
 	]
 
 	def parse_item(self, response):
