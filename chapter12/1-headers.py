@@ -7,5 +7,5 @@ headers = {"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWeb
 url = "https://www.whatismybrowser.com/developers/what-http-headers-is-my-browser-sending"
 req = session.get(url, headers=headers)
 
-bsObj = BeautifulSoup(req.text)
+bsObj = BeautifulSoup(req.text, "html.parser")
 print(bsObj.find("table",{"class":"table-striped"}).get_text)
