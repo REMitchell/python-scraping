@@ -35,7 +35,7 @@ def getCountry(ipAddress):
     except HTTPError:
         return None
     responseJson = json.loads(response)
-    return responseJson.get("country_code")
+    return responseJson["region_name"]
     
 links = getLinks("/wiki/Python_(programming_language)")
 
