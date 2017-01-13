@@ -7,7 +7,9 @@ class TestAddition(unittest.TestCase):
     driver = None
     def setUp(self):
         global driver
-        driver = webdriver.PhantomJS(executable_path='<Path to Phantom JS>')
+        #REPLACE WITH YOUR DRIVER PATH. EXAMPLES FOR CHROME AND PHANTOMJS
+        driver = webdriver.PhantomJS(executable_path='../phantomjs-2.1.1-macosx/bin/phantomjs')
+        #driver = webdriver.Chrome(executable_path='../chromedriver/chromedriver')
         url = 'http://pythonscraping.com/pages/javascript/draggableDemo.html'
         driver.get(url)
 

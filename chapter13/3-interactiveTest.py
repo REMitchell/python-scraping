@@ -4,7 +4,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
 
 
-driver = webdriver.PhantomJS(executable_path='phantomjs/bin/phantomjs')
+#REPLACE WITH YOUR DRIVER PATH. EXAMPLES FOR CHROME AND PHANTOMJS
+driver = webdriver.PhantomJS(executable_path='../phantomjs-2.1.1-macosx/bin/phantomjs')
+#driver = webdriver.Chrome(executable_path='../chromedriver/chromedriver')
 driver.get("http://pythonscraping.com/pages/files/form.html")
 
 firstnameField = driver.find_element_by_name("firstname")
