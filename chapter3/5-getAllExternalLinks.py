@@ -21,7 +21,7 @@ def getInternalLinks(bsObj, includeUrl):
                 else:
                     internalLinks.append(link.attrs['href'])
     return internalLinks
-            
+
 #Retrieves a list of all external links found on a page
 def getExternalLinks(bsObj, excludeUrl):
     externalLinks = []
@@ -45,12 +45,12 @@ def getRandomExternalLink(startingPage):
         return getRandomExternalLink(internalLinks[random.randint(0,len(internalLinks)-1)])
     else:
         return externalLinks[random.randint(0, len(externalLinks)-1)]
-    
+
 def followExternalOnly(startingSite):
     externalLink = getRandomExternalLink(startingSite)
     print("Random external link is: "+externalLink)
     followExternalOnly(externalLink)
-            
+
 #Collects a list of all external URLs found on the site
 allExtLinks = set()
 allIntLinks = set()
