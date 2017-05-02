@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import string
 from collections import OrderedDict
+from collections import defaultdict
 
 def cleanInput(input):
     input = re.sub('\n+', " ", input)
@@ -20,13 +21,10 @@ def cleanInput(input):
 
 def getNgrams(input, n):
     input = cleanInput(input)
-    output = dict()
+    output=defaultdict(int)
     for i in range(len(input)-n+1):
         newNGram = " ".join(input[i:i+n])
-        if newNGram in output:
-            output[newNGram] += 1
-        else:
-            output[newNGram] = 1
+        output[newNGram]+=1
     return output
 
 html = urlopen("http://en.wikipedia.org/wiki/Python_(programming_language)")
