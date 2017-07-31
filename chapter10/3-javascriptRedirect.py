@@ -13,7 +13,7 @@ def waitForLoad(driver):
             return
         time.sleep(.5)
         try:
-            elem == driver.find_element_by_tag_name("html")
+            elem.get_attribute("innerHTML") == driver.find_element_by_tag_name("html").get_attribute("innerHTML")
         except StaleElementReferenceException:
             return
 
