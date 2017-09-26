@@ -13,7 +13,12 @@ def waitForLoad(driver):
             return
         time.sleep(.5)
         try:
-            elem == driver.find_element_by_tag_name("html")
+             #elem ==driver.find_element_by_tag_name('html') will just return True or False,
+             #but will never raise a StaleElementReferenceException.
+
+             #It will raise a StaleElementReferenceException when using elem to do something
+             # while it is not the original one due to the page changing.
+            elem.text == driver.find_element_by_tag_name("html").text
         except StaleElementReferenceException:
             return
 
