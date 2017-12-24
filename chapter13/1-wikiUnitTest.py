@@ -18,9 +18,9 @@ class TestWikipedia(unittest.TestCase):
         url = "http://en.wikipedia.org/wiki/Monty_Python"
         #Test the first 100 pages we encounter
         for i in range(1, 100):
-            bsObj = BeautifulSoup(urlopen(url))
+            bsObj = BeautifulSoup(urlopen(url), 'html.parser')
             titles = self.titleMatchesURL()
-            self.assertEquals(titles[0], titles[1])
+            self.assertEqual(titles[0], titles[1])
             self.assertTrue(self.contentExists())
             url = self.getNextLink()
         print("Done!")

@@ -14,6 +14,7 @@ class TestAddition(unittest.TestCase):
         driver.get(url)
 
     def tearDown(self):
+        driver.close()
         print("Tearing down the test")
 
     def test_drag(self):
