@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pymysql
 
 
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root', db='mysql', charset='utf8')
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', password=None, db='mysql', charset='utf8')
 cur = conn.cursor()
 cur.execute("USE wikipedia")
 

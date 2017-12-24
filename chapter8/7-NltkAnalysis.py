@@ -5,6 +5,6 @@ nouns = ['NN', 'NNS', 'NNP', 'NNPS']
 for sentence in sentences: 
     if "google" in sentence.lower(): 
         taggedWords = pos_tag(word_tokenize(sentence)) 
-            for word in taggedWords: 
-                if word[0].lower() == "google" and word[1] in nouns: 
-                    print(sentence)
+        for word in taggedWords: 
+            if word[0].lower() == "google" and word[1] in nouns: 
+                print(sentence)

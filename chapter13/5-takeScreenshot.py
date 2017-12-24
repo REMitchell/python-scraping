@@ -10,3 +10,4 @@ driver = webdriver.PhantomJS(executable_path='../phantomjs-2.1.1-macosx/bin/phan
 driver.implicitly_wait(5)
 driver.get('http://www.pythonscraping.com/')
 driver.get_screenshot_as_file('tmp/pythonscraping.png')
+driver.close()

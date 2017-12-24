@@ -16,3 +16,5 @@ actions = ActionChains(driver)
 actions.drag_and_drop(element, target).perform()
 
 print(driver.find_element_by_id("message").text)
+
+driver.close()
