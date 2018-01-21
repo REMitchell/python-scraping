@@ -1,0 +1,15 @@
+import scrapy
+
+class ArticleSpider(scrapy.Spider):
+    name='articles'
+
+    def start_requests(self):
+        urls = [
+            "http://en.wikipedia.org/wiki/Python_%28programming_language%29",
+            "https://en.wikipedia.org/wiki/Functional_programming",
+            "https://en.wikipedia.org/wiki/Monty_Python"]
+        return [scrapy.Request(url=a, callback=self.parse) for a in urls]
+
+    def parse(self, response):
+        title = response.css('h1::text').extract_first()
+        print('Title is: {}'.format(title))
