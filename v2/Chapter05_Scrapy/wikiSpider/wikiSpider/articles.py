@@ -1,15 +1,17 @@
-import scrapy
+from scrapy.contrib.linkextractors import LinkExtractor
+from scrapy.contrib.spiders import CrawlSpider, Rule
 
-class ArticleSpider(scrapy.Spider):
-    name='articles'
+class ArticleSpider(CrawlSpider):
+    name = 'articles'
+    allowed_domains = ['wikipedia.org']
+    start_urls = ['https://en.wikipedia.org/wiki/Benevolent_dictator_for_life']
+    rules = [Rule(LinkExtractor(allow=r'.*'), callback='parse_items', follow=True)]
 
-    def start_requests(self):
-        urls = [
-            "http://en.wikipedia.org/wiki/Python_%28programming_language%29",
-            "https://en.wikipedia.org/wiki/Functional_programming",
-            "https://en.wikipedia.org/wiki/Monty_Python"]
-        return [scrapy.Request(url=a, callback=self.parse) for a in urls]
-
-    def parse(self, response):
+    def parse_items(self, response):
         title = response.css('h1::text').extract_first()
-        print('Title is: {}'.format(title))
+        text = response.xpath('//div[@id="mw-content-text"]//text()').extract()
+        lastUpdated = response.css('li#footer-info-lastmod::text').extract_first()
+        lastUpdated = lastUpdated.replace('This page was last edited on ', '')
+        print('title is: {} '.format(title))
+        print('text is: {}'.format(text))
+        print('Last updated: {}'.format(lastUpdated))
