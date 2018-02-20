@@ -1,6 +1,7 @@
 from PIL import Image, ImageFilter
 
-kitten = Image.open("kitten.jpg")
+kitten = Image.open("C://Users/kohn/Pictures/G1.PNG")
 blurryKitten = kitten.filter(ImageFilter.GaussianBlur)
-blurryKitten.save("kitten_blurred.jpg")
+blurryKitten.save("kitten_blurred.PNG")
 blurryKitten.show()
+kitten.show()
