@@ -13,7 +13,7 @@ def getAbsoluteURL(baseUrl, source):
         url = source
     elif source.startswith("www."):
         url = source[4:]
-        url = "http://"+source
+        url = "http://"+url
     else:
         url = baseUrl+"/"+source
     if baseUrl not in url or ".js" in url:
