@@ -26,9 +26,7 @@ def buildWordDict(text):
     for symbol in punctuation:
         text = text.replace(symbol, " "+symbol+" ")
 
-    words = text.split(" ")
-    #Filter out empty words
-    words = [word for word in words if word != ""]
+    words = text.split()
 
     wordDict = {}
     for i in range(1, len(words)):
