@@ -2,6 +2,8 @@ import csv
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
+
+
 html = urlopen("http://en.wikipedia.org/wiki/Comparison_of_text_editors")
 bsObj = BeautifulSoup(html, "html.parser")
 #The main comparison table is currently the first table on the page
