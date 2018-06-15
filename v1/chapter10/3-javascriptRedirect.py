@@ -13,7 +13,10 @@ def waitForLoad(driver):
             return
         time.sleep(.5)
         try:
-            elem == driver.find_element_by_tag_name("html")
+            # I'm a beginner, i guess this was a bug
+            # elem shoud be called, not be found again
+            # elem == driver.find_element_by_tag_name("html")
+            elem.text  # just call it 
         except StaleElementReferenceException:
             return
 
