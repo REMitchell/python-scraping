@@ -21,6 +21,8 @@ def task_delegator(taskQueue, foundUrlsQueue):
             for link in links:
                 #Add new link to the taskQueue
                 taskQueue.put(link)
+                #Add new link to the visited list
+                visited.append(link)
 
 def get_links(bsObj):
     links = bsObj.find('div', {'id':'bodyContent'}).find_all('a', href=re.compile('^(/wiki/)((?!:).)*$'))
