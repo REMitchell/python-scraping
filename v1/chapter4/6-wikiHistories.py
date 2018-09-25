@@ -31,7 +31,7 @@ def getHistoryIPs(pageUrl):
 
 def getCountry(ipAddress):
     try:
-        response = urlopen("http://freegeoip.net/json/"+ipAddress).read().decode('utf-8')
+        response = urlopen("http://api.ipstack.com/"+ipAddress+"?access_key=YOURKEY_FROM_IPSTACK").read().decode('utf-8')
     except HTTPError:
         return None
     responseJson = json.loads(response)
