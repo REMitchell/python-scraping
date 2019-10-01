@@ -2,6 +2,8 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
 import random
+import pandas as pd
+import numpy as np
 
 from multiprocessing import Process, Queue
 import os
