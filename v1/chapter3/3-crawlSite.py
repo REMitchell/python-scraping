@@ -1,4 +1,6 @@
 from urllib.request import urlopen
+from urllib.error import HTTPError
+from urllib.error import URLError
 from bs4 import BeautifulSoup
 import re
 import datetime
@@ -6,6 +8,28 @@ import random
 
 pages = set()
 random.seed(datetime.datetime.now())
+
+def getBsObj(url):
+    try:
+        htmlCode = urlopen(url)
+    except HTTPError as e:
+        print(e)
+    except URLError as e:
+        print("!!The server couldn't be found!!")
+        print(e)
+    else:
+        pass
+
+    try:
+        bsObj = BeautifulSoup(htmlCode, 'html.parser')
+    except AttributeError as e:
+        print("!!tag not found!! --AttributeError")
+        print(e)
+    else:
+        if bsObj is None:
+            print("!!tag not found!! --None")
+        else:
+            return bsObj
 
 #Retrieves a list of all Internal links found on a page
 def getInternalLinks(bsObj, includeUrl):
@@ -33,8 +57,7 @@ def splitAddress(address):
     return addressParts
 
 def getRandomExternalLink(startingPage):
-    html = urlopen(startingPage)
-    bsObj = BeautifulSoup(html, "html.parser")
+    bsObj = getBsObj(startingPage)
     externalLinks = getExternalLinks(bsObj, splitAddress(startingPage)[0])
     if len(externalLinks) == 0:
         internalLinks = getInternalLinks(startingPage)
