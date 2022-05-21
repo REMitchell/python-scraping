@@ -79,7 +79,7 @@ while True:
             bizId = uuid5(NAMESPACE_DNS, content).hex[:8]
             publishTime = int(round(mktime(strptime(publishTime, '%Y-%m-%d %H:%M')) * 1000))
             producer = KafkaProducer(
-                bootstrap_servers='192.168.5.150:9092'
+                bootstrap_servers=''
                 ,value_serializer=lambda v: json.dumps(v).encode('utf-8')
                 )
             d = {
