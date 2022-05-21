@@ -94,7 +94,7 @@ for a in bs1.find_all('a'):
                                                     print(d)
                                                     
                                                     producer = KafkaProducer(
-                                                        bootstrap_servers='192.168.5.150:9092'
+                                                        bootstrap_servers=''
                                                         ,value_serializer=lambda v: json.dumps(v).encode('utf-8')
                                                         )
         
