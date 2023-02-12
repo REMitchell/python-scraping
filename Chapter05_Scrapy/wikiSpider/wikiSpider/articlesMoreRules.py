@@ -6,7 +6,7 @@ class ArticleSpider(CrawlSpider):
     allowed_domains = ['wikipedia.org']
     start_urls = ['https://en.wikipedia.org/wiki/Benevolent_dictator_for_life']
     rules = [
-        Rule(LinkExtractor(allow='^(/wiki/)((?!:).)*$'), callback='parse_items', follow=True, cb_kwargs={'is_article': True}),
+        Rule(LinkExtractor(allow='(/wiki/)((?!:).)*$'), callback='parse_items', follow=True, cb_kwargs={'is_article': True}),
         Rule(LinkExtractor(allow='.*'), callback='parse_items', cb_kwargs={'is_article': False})
     ]
 
