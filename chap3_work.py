@@ -29,6 +29,7 @@ while len(links) > 0:
 """
 
 ## 3-2
+"""
 # 停止条件が満たされにくいコードのため，どっかでctrl+Cで止める必要あり
 pages = set()
 def getLinks(pageUrl):
@@ -45,3 +46,6 @@ def getLinks(pageUrl):
                 getLinks(newPage)
 
 getLinks('')
+"""
+
+## 3-2-1
