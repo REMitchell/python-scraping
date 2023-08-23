@@ -10,6 +10,8 @@ for link in bs.find('div', {'id':'bodyContent'}).find_all('a', href=re.compile('
         print(link.attrs['href'])
 
 ## p.35あたり
+"""
+# 停止条件が満たされにくいコードのため，どっかでctrl+Cで止める必要あり
 import datetime
 import random
 
@@ -24,3 +26,22 @@ while len(links) > 0:
     newArticle = links[random.randint(0, len(links)-1)].attrs['href']
     print(newArticle)
     links = getLinks(newArticle)
+"""
+
+## 3-2
+# 停止条件が満たされにくいコードのため，どっかでctrl+Cで止める必要あり
+pages = set()
+def getLinks(pageUrl):
+    global pages
+    html = urlopen('http://en.wikipedia.org{}'.format(pageUrl))
+    bs = BeautifulSoup(html, 'html.parser')
+    for link in bs.find_all('a', href=re.compile('^(/wiki/)')):
+        if 'href' in link.attrs:
+            if link.attrs['href'] not in pages:
+                # 新しいページに出会った
+                newPage = link.attrs['href']
+                print(newPage)
+                pages.add(newPage)
+                getLinks(newPage)
+
+getLinks('')
