@@ -31,3 +31,4 @@ print(bs.find('img', {'src':'../img/gifts/img1.jpg'}).parent.previous_sibling.ge
 images = bs.find_all('img', {'src':re.compile('..\/img\/gifts\/img.*.jpg')})
 for image in images:
     print(image['src'])
+
