@@ -6,4 +6,4 @@ If you're looking for the first edition code files, they can be found in the <a 
 
 Most code for the second edition is contained in <a href="https://jupyter.org/install.html">Jupyter notebooks</a>. Although these files can be viewed directly in your browser in Github, some formatting changes and oddities may occur. I recommend that you clone the repository, install Jupyter, and view them locally for the best experience.
 
-The web changes, libraries update, and make mistakes and typos more frequently than I'd like to admit! If you think you've spotted an error, please feel free to make a pull request against this repository.
+The web changes, libraries update, and I make mistakes and typos more frequently than I'd like to admit! If you think you've spotted an error, please feel free to make a pull request against this repository.
