@@ -1,0 +1,2 @@
+[scrapy]
+settings = wikiSpider.settings

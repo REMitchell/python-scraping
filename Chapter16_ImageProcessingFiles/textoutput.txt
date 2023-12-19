@@ -1,0 +1,2 @@
+This is some text, written in Arial, that \
+Tesseract. Here are some symbols:
