@@ -1,0 +1,17 @@
+setup.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
+wikiSpider/__init__.py
+wikiSpider/items.py
+wikiSpider/middlewares.py
+wikiSpider/pipelines.py
+wikiSpider/settings.py
+wikiSpider/spiders/__init__.py
+wikiSpider/spiders/article.py
+wikiSpider/spiders/articleItems.py
+wikiSpider/spiders/articlePipelines.py
+wikiSpider/spiders/articles.py
+wikiSpider/spiders/articlesMoreRules.py
